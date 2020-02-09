@@ -1,0 +1,22 @@
+baseURL = "https://zeyaddeeb.com/"
+languageCode = "en-us"
+title = "Zeyad Deeb"
+theme = "hyde"
+tags = ["blog"]
+
+[Menus]
+  main = [
+      {Name = "Github", URL = "https://github.com/zeyaddeeb/"},
+      {Name = "LinkedIn", URL = "https://www.linkedin.com/in/zeyaddeeb/"},
+  ]
+
+
+[author]
+    name = "Zeyad Deeb"
+    homepage = "https://zeyaddeeb.com"
+
+
+[params]
+  description = "The statistical brick road"
+  layoutReverse = true
+  googleAnalytics = "UA-76463767-1"
