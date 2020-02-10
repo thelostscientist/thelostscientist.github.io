@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Zeyad Deeb</title>
-    <link>http://www.zeyaddeeb.com/</link>
+    <link>https://www.zeyaddeeb.com/</link>
     <description>Recent content on Zeyad Deeb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 09 Feb 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.zeyaddeeb.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.zeyaddeeb.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Migrating to Hugo from Jykell</title>
-      <link>http://www.zeyaddeeb.com/introducing-sbr/</link>
+      <link>https://www.zeyaddeeb.com/introducing-sbr/</link>
       <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://www.zeyaddeeb.com/introducing-sbr/</guid>
+      <guid>https://www.zeyaddeeb.com/introducing-sbr/</guid>
       <description>Hello, testing CI/CD</description>
     </item>
     
