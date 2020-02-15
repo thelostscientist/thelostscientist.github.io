@@ -52,8 +52,31 @@
     <div class="post">
   <h1>Migrating to Hugo from Jykell</h1>
   <time datetime=2020-02-09T00:00:00Z class="post-date">Sun, Feb 9, 2020</time>
-  <p>Golang is awesome!</p>
+  <p>This blog was originally built on <a href="https://jekyllrb.com/">Jykell</a>, which is pretty straight forward. Deployment to GitHub is very easy and if you add a <code>CNAME</code> file, you can customize the domain name as well.</p>
+<p>The other day, I was working on a project to consume video data in Kafka, the original service was written in python. Here is an example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> kafka <span style="color:#f92672">import</span> KafkaProducer
+<span style="color:#f92672">from</span> kafka.errors <span style="color:#f92672">import</span> KafkaError
 
+producer <span style="color:#f92672">=</span> KafkaProducer(bootstrap_servers<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">localhost:9092</span><span style="color:#e6db74">&#39;</span>)
+
+topic <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">my-topic</span><span style="color:#e6db74">&#39;</span>
+
+video <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>VideoCapture(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">cool-video.mpf</span><span style="color:#e6db74">&#34;</span>)
+
+<span style="color:#66d9ef">while</span> video<span style="color:#f92672">.</span>isOpened():
+    success, frame <span style="color:#f92672">=</span> video<span style="color:#f92672">.</span>read()
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> success:
+        <span style="color:#66d9ef">break</span>
+
+    data <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imencode(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">.jpeg</span><span style="color:#e6db74">&#39;</span>, frame)[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>tobytes()
+
+    future <span style="color:#f92672">=</span> producer<span style="color:#f92672">.</span>send(topic, data)
+    <span style="color:#66d9ef">try</span>:
+        future<span style="color:#f92672">.</span>get(timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+    <span style="color:#66d9ef">except</span> KafkaError <span style="color:#66d9ef">as</span> e:
+        <span style="color:#66d9ef">print</span>(e)
+        <span style="color:#66d9ef">break</span>
+</code></pre></div>
 </div>
 
 
