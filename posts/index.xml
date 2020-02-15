@@ -17,10 +17,7 @@
       <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://www.zeyaddeeb.com/posts/migrarion/</guid>
-      <description>This blog was originally built on Jykell, which is pretty straight forward. Deployment to GitHub is very easy and if you add a CNAME file, you can customize the domain name as well.
-The other day, I was working on a project to consume video data in Kafka, the original service was written in python. Here is an example:
-{% highlight python %}
-from kafka import KafkaProducer from kafka.errors import KafkaError</description>
+      <description>The other day, I was working on a project to consume video data in Kafka, the original service was written in python.</description>
     </item>
     
   </channel>
