@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Zeyad Deeb</title>
-    <link>https://zeyaddeeb.com/</link>
+    <link>https://www.zeyaddeeb.com/</link>
     <description>Recent content on Zeyad Deeb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 09 Feb 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zeyaddeeb.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.zeyaddeeb.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Migrating to Hugo from Jykell</title>
-      <link>https://zeyaddeeb.com/posts/migrarion/</link>
+      <link>https://www.zeyaddeeb.com/posts/migrarion/</link>
       <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://zeyaddeeb.com/posts/migrarion/</guid>
+      <guid>https://www.zeyaddeeb.com/posts/migrarion/</guid>
       <description>The other day, I was working on a project to consume video data in Kafka, the original service was written in python.</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://zeyaddeeb.com/about/</link>
+      <link>https://www.zeyaddeeb.com/about/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://zeyaddeeb.com/about/</guid>
+      <guid>https://www.zeyaddeeb.com/about/</guid>
       <description></description>
     </item>
     
