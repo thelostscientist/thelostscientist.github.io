@@ -21,12 +21,12 @@
     </item>
     
     <item>
-      <title>Migrating to Hugo from Jykell</title>
+      <title>Go, in a Machine Learning Application...</title>
       <link>https://www.zeyaddeeb.com/posts/migrarion/</link>
       <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://www.zeyaddeeb.com/posts/migrarion/</guid>
-      <description>Nearly six months ago, I found myself working on a project to consume video data in Apache Kafka. The original service was written in Python.</description>
+      <description>A few years back, like almost all engineers, I installed Golang (Go), added GOPATH to my .zshrc and ran a couple go run .</description>
     </item>
     
   </channel>
