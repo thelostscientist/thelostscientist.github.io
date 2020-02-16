@@ -126,7 +126,8 @@ if (!doNotTrack) {
     <time>February 9, 2020</time>
     <div>
         <p>
-        <p>The other day, I was working on a project to consume video data in Kafka, the original service was written in python. Here is an example:</p>
+        <p>Nearly six months ago, I found myself working on a project to consume video data in <a href="https://kafka.apache.org/">Apache Kafka</a>. The original service was written in <a href="https://www.python.org/">Python</a>.</p>
+<p>Here is an example Kafka producer that sent video data to a topic:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">kafka</span> <span style="color:#007020;font-weight:bold">import</span> KafkaProducer
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">kafka.errors</span> <span style="color:#007020;font-weight:bold">import</span> KafkaError
 
@@ -134,21 +135,80 @@ producer <span style="color:#666">=</span> KafkaProducer(bootstrap_servers<span 
 
 topic <span style="color:#666">=</span> <span style="color:#4070a0"></span><span style="color:#4070a0">&#39;</span><span style="color:#4070a0">my-topic</span><span style="color:#4070a0">&#39;</span>
 
-video <span style="color:#666">=</span> cv2<span style="color:#666">.</span>VideoCapture(<span style="color:#4070a0"></span><span style="color:#4070a0">&#34;</span><span style="color:#4070a0">cool-video.mp4</span><span style="color:#4070a0">&#34;</span>)
+video_path <span style="color:#666">=</span> <span style="color:#4070a0"></span><span style="color:#4070a0">&#34;</span><span style="color:#4070a0">cool-video.mp4</span><span style="color:#4070a0">&#34;</span>
 
-<span style="color:#007020;font-weight:bold">while</span> video<span style="color:#666">.</span>isOpened():
-    success, frame <span style="color:#666">=</span> video<span style="color:#666">.</span>read()
-    <span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020;font-weight:bold">not</span> success:
+chunk_size <span style="color:#666">=</span> <span style="color:#40a070">5</span> <span style="color:#666">*</span> <span style="color:#40a070">1024</span> <span style="color:#666">*</span> <span style="color:#40a070">1024</span>  <span style="color:#60a0b0;font-style:italic"># 5mb</span>
+
+<span style="color:#007020;font-weight:bold">with</span> io<span style="color:#666">.</span>open(video_path, <span style="color:#4070a0"></span><span style="color:#4070a0">&#39;</span><span style="color:#4070a0">rb</span><span style="color:#4070a0">&#39;</span>) <span style="color:#007020;font-weight:bold">as</span> video_file:
+
+    <span style="color:#007020;font-weight:bold">while</span> True:
+        data <span style="color:#666">=</span> video_file<span style="color:#666">.</span>read(chunk_size)
+        <span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020;font-weight:bold">not</span> data:
+            <span style="color:#007020;font-weight:bold">break</span>
+        future <span style="color:#666">=</span> producer<span style="color:#666">.</span>send(topic, data)
+        <span style="color:#007020;font-weight:bold">try</span>:
+            future<span style="color:#666">.</span>get(timeout<span style="color:#666">=</span><span style="color:#40a070">10</span>)
+        <span style="color:#007020;font-weight:bold">except</span> KafkaError <span style="color:#007020;font-weight:bold">as</span> e:
+            <span style="color:#007020;font-weight:bold">print</span>(e)
+            <span style="color:#007020;font-weight:bold">break</span></code></pre></div>
+<p>In this setup, there was a parallel consumer process that sent the produced data to <a href="https://cloud.google.com/video-intelligence">Google Video Intelligence API</a> for enrichment and put the results on a new topic, which would later be joined with the raw data:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">kafka</span> <span style="color:#007020;font-weight:bold">import</span> KafkaConsumer, KafkaProducer
+<span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">google.cloud</span> <span style="color:#007020;font-weight:bold">import</span> videointelligence_v1p3beta1 <span style="color:#007020;font-weight:bold">as</span> videointelligence
+
+topic <span style="color:#666">=</span> <span style="color:#4070a0"></span><span style="color:#4070a0">&#39;</span><span style="color:#4070a0">my-topic</span><span style="color:#4070a0">&#39;</span>
+enriched_topic <span style="color:#666">=</span> <span style="color:#4070a0"></span><span style="color:#4070a0">&#39;</span><span style="color:#4070a0">my-topic-enriched</span><span style="color:#4070a0">&#39;</span>
+
+consumer <span style="color:#666">=</span> KafkaConsumer(topic, bootstrap_servers<span style="color:#666">=</span><span style="color:#4070a0"></span><span style="color:#4070a0">&#39;</span><span style="color:#4070a0">localhost:9092</span><span style="color:#4070a0">&#39;</span>)
+producer <span style="color:#666">=</span> KafkaProducer(bootstrap_servers<span style="color:#666">=</span><span style="color:#4070a0"></span><span style="color:#4070a0">&#39;</span><span style="color:#4070a0">localhost:9092</span><span style="color:#4070a0">&#39;</span>)
+
+client <span style="color:#666">=</span> videointelligence<span style="color:#666">.</span> StreamingVideoIntelligenceServiceClient()
+
+config <span style="color:#666">=</span> videointelligence<span style="color:#666">.</span>types<span style="color:#666">.</span> StreamingVideoConfig(
+
+    feature<span style="color:#666">=</span>(videointelligence<span style="color:#666">.</span>enums<span style="color:#666">.</span>StreamingFeature<span style="color:#666">.</span>
+                STREAMING_SHOT_CHANGE_DETECTION))
+
+config_request <span style="color:#666">=</span> videointelligence<span style="color:#666">.</span>types<span style="color:#666">.</span> StreamingAnnotateVideoRequest(
+
+    video_config<span style="color:#666">=</span>config)
+
+<span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">stream_generator</span>():
+
+    <span style="color:#007020;font-weight:bold">yield</span> config_request
+    <span style="color:#007020;font-weight:bold">for</span> message <span style="color:#007020;font-weight:bold">in</span> consumer:
+        <span style="color:#007020;font-weight:bold">yield</span> videointelligence<span style="color:#666">.</span>types<span style="color:#666">.</span>StreamingAnnotateVideoRequest(
+            input_content<span style="color:#666">=</span>message<span style="color:#666">.</span>value)
+
+requests <span style="color:#666">=</span> stream_generator()
+
+responses <span style="color:#666">=</span> client<span style="color:#666">.</span>streaming_annotate_video(requests, timeout<span style="color:#666">=</span><span style="color:#40a070">300</span>)
+
+<span style="color:#007020;font-weight:bold">for</span> response <span style="color:#007020;font-weight:bold">in</span> responses:
+
+    <span style="color:#007020;font-weight:bold">if</span> response<span style="color:#666">.</span>error<span style="color:#666">.</span>message:
         <span style="color:#007020;font-weight:bold">break</span>
 
-    data <span style="color:#666">=</span> cv2<span style="color:#666">.</span>imencode(<span style="color:#4070a0"></span><span style="color:#4070a0">&#39;</span><span style="color:#4070a0">.jpeg</span><span style="color:#4070a0">&#39;</span>, frame)[<span style="color:#40a070">1</span>]<span style="color:#666">.</span>tobytes()
-
-    future <span style="color:#666">=</span> producer<span style="color:#666">.</span>send(topic, data)
+    future <span style="color:#666">=</span> producer<span style="color:#666">.</span>send(enriched_topic, response)
     <span style="color:#007020;font-weight:bold">try</span>:
         future<span style="color:#666">.</span>get(timeout<span style="color:#666">=</span><span style="color:#40a070">10</span>)
     <span style="color:#007020;font-weight:bold">except</span> KafkaError <span style="color:#007020;font-weight:bold">as</span> e:
         <span style="color:#007020;font-weight:bold">print</span>(e)
         <span style="color:#007020;font-weight:bold">break</span></code></pre></div>
+<p>If you are a true python hero, you might see this code example and instantly think, &ldquo;Why not use <code>aiokafka</code> package to provide <code>async</code> features, which should optimize the performance?&rdquo; Then you'd have a Machine Learning pipeline that many companies dream of implementing.</p>
+<p>I've been a Python cheerleader since version 2.4. It's not that I don't like Java or C++; I simply appreciate how Python got the scientific community excited about solving complicated problems in new ways. The idea that you don't have to be an engineer who understands <a href="https://en.wikipedia.org/wiki/SOLID">SOLID principles</a> so you can write a basic program that consumes and analyzes image data from the <a href="https://hla.stsci.edu/">Hubble Telescope</a> is worth celebrating.</p>
+<p>Turning back to the original point of the Kafka video enrichment example above- I wanted to increase the <code>chuck_size</code> from <code>5mb</code> to <code>10mb</code> , without taking a hit on performance. To do that, I began to explore <a href="https://golang.org/">Golang</a>, which spoiler alert, certainly took me down a rabbit hole.</p>
+<p>A few years back, like all engineers, I installed Golang (Go), added <code>GOPATH</code> to my <code>.zshrc</code> and ran a couple <code>go run .</code> and <code>go build .</code> on simple programs like this:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:bold">package</span> main
+<span style="color:#007020;font-weight:bold">import</span> <span style="color:#4070a0">&#34;fmt&#34;</span>
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() {
+
+    fmt.<span style="color:#06287e">Println</span>(<span style="color:#4070a0">&#34;hello world&#34;</span>)
+
+}</code></pre></div>
+<p>At that point I was convinced that Go is <strong>neat</strong>, and figured I should explore more sometime. Every now and then, I looked at <code>terraform</code> or <code>docker</code> internals, which are all written in Go, so I can understand how specific things worked. But I didn't really start my Go journey until this video processing project.</p>
+<p>Rewriting the pipeline in Go was not that difficult. You can find the full example on <a href="https://github.com/zeyaddeeb/ml-video-pipeline">GitHub</a>.</p>
+<p>Some nuggets&hellip;</p>
+<p>Golang became my second choice to develop applications. I wasn't really updating the blog as frequently as I would like. So I decided to start a new page with Hugo and update the blog more often. Most of my code will be in Python, but there will be some Go nuggets every now and then.</p>
 
         </p>
     </div>

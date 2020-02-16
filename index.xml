@@ -6,10 +6,19 @@
     <description>Recent content on Zeyad Deeb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.zeyaddeeb.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Corona virus (COVID-19) outbreak analysis</title>
+      <link>https://www.zeyaddeeb.com/posts/coronavirus/</link>
+      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zeyaddeeb.com/posts/coronavirus/</guid>
+      <description>Coming Soon!</description>
+    </item>
     
     <item>
       <title>Migrating to Hugo from Jykell</title>
@@ -17,7 +26,7 @@
       <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://www.zeyaddeeb.com/posts/migrarion/</guid>
-      <description>The other day, I was working on a project to consume video data in Kafka, the original service was written in python.</description>
+      <description>Nearly six months ago, I found myself working on a project to consume video data in Apache Kafka. The original service was written in Python.</description>
     </item>
     
     <item>
