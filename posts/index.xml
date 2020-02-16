@@ -22,10 +22,10 @@
     
     <item>
       <title>Go, in a Machine Learning Application...</title>
-      <link>https://www.zeyaddeeb.com/posts/migrarion/</link>
+      <link>https://www.zeyaddeeb.com/posts/golang-in-ml/</link>
       <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://www.zeyaddeeb.com/posts/migrarion/</guid>
+      <guid>https://www.zeyaddeeb.com/posts/golang-in-ml/</guid>
       <description>A few years back, like almost all engineers, I installed Golang (Go), added GOPATH to my .zshrc and ran a couple go run .</description>
     </item>
     
