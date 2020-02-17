@@ -12,12 +12,14 @@
     
     
     <item>
-      <title>Corona virus (COVID-19) outbreak analysis</title>
+      <title>Coronavirus (COVID-19) outbreak analysis</title>
       <link>https://www.zeyaddeeb.com/posts/coronavirus/</link>
       <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://www.zeyaddeeb.com/posts/coronavirus/</guid>
-      <description>Coming Soon!</description>
+      <description>Data source John Hopkins: The Center for Systems Science and Engineering (CSSE)
+SIR epidemic model \[ S(t)+I(t)+R(t)=N \]
+where \(t\) is time.</description>
     </item>
     
     <item>
