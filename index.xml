@@ -6,7 +6,7 @@
     <description>Recent content on Zeyad Deeb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.zeyaddeeb.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,12 +14,11 @@
     <item>
       <title>Coronavirus (COVID-19) outbreak analysis</title>
       <link>https://www.zeyaddeeb.com/posts/coronavirus/</link>
-      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 22 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://www.zeyaddeeb.com/posts/coronavirus/</guid>
-      <description>Data source John Hopkins: The Center for Systems Science and Engineering (CSSE)
-SIR epidemic model \[ S(t)+I(t)+R(t)=N \]
-where \(t\) is time.</description>
+      <description>The first news article I read this morning described Coronavirus (COVID-19) as &amp;quot;disease X&amp;quot;;
+ The World Health Organization cautioned years ago that a mysterious “disease X” could spark an international contagion.</description>
     </item>
     
     <item>

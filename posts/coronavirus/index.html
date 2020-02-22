@@ -123,12 +123,32 @@ if (!doNotTrack) {
         <div id="content" class="content-container">
         
 <h1 class="post-title">Coronavirus (COVID-19) outbreak analysis</h1>
-    <time>February 15, 2020</time>
+    <time>February 22, 2020</time>
     <div>
         <p>
-        <h4 id="data-source">Data source</h4>
+        <p>The <a href="https://www.bloomberg.com/news/articles/2020-02-22/coronavirus-may-be-the-disease-x-health-agency-warned-about">first news article I read this morning</a> described Coronavirus (COVID-19) as &quot;disease X&quot;;</p>
 
-<p>John Hopkins: The Center for Systems Science and Engineering (CSSE)</p>
+<blockquote>
+<p>The World Health Organization cautioned years ago that a mysterious “disease X” could spark an international contagion. The new coronavirus, with its ability to quickly morph from mild to deadly, is emerging as a contender - Bloomberg</p>
+</blockquote>
+
+<p>This is some scary shit! I've been working on some models attempting to have a objective look at COVID-19 outbreak, which I'll be sharing today.</p>
+
+<p>John Hopkins: The Center for Systems Science and Engineering (CSSE), is kind enough to share data they collect from multiple sources. You can grab the data from this <a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">link</a> or see my <a href="https://github.com/zeyaddeeb/coronavirus">Github</a>.</p>
+
+<p>Obviously, the first thing is to look at what the trend;</p>
+
+<div id="/plots/coronavirus-trend.html" style="display: flex;justify-content: center">
+    <iframe src="/plots/coronavirus-trend.html" width="500vw" height="300" frameBorder="0"></iframe>
+</div>
+
+<p>This seems like confirmed cases are on the rise with total of whopping 1,058,633 cases, while recovery rate is at 13.43% and the death rate 2.46% as of Feb 26 2020.</p>
+
+<p>If you have lower than normal empathy, you might say that not too shabby, only 26k or so people died... So why is everyone freaking out?!</p>
+
+<div id="/plots/coronavirus-map.html" style="display: flex;justify-content: center">
+    <iframe src="/plots/coronavirus-map.html" width="500vw" height="300" frameBorder="0"></iframe>
+</div>
 
 <h3 id="sir-epidemic-model">SIR epidemic model</h3>
 
