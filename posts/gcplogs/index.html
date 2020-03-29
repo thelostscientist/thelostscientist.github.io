@@ -135,7 +135,7 @@ if (!doNotTrack) {
 <p>When I started using Google Cloud, I was irritated with going to the console and writing a query to view my logs, until I started debugging native VPCs for Kuberenetes, at which point I began looking for a tool like <code>awslogs</code> but unfortunately didn't find one. So, I built one <code>gcplogs</code> . You can find the source code on <a href="https://github.com/zeyaddeeb/gcplogs">GitHub</a></p>
 
 <p>The tool is build using python, and you can easily install it using <code>pip</code></p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install gcplogs</code></pre></div>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install -U gcplogs</code></pre></div>
 <p>A sample usage:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcplogs get gce_instance --event-start<span style="color:#666">=</span><span style="color:#4070a0">&#39;1 week ago&#39;</span></code></pre></div>
 <div id="/images/gcplogs.gif" style="display: flex;justify-content: center">
