@@ -130,7 +130,7 @@ if (!doNotTrack) {
 
 <p>Lately, I've revisited Boundary Value Problems (BVP) and their relationship to Fourier Series. I'll attempt to simplify the topic a bit, but I can never do it justice.</p>
 
-<p>A quick refresher on Fourier Series, the core idea is to take a periodic signal <span  class="math">\(u(t)\)</span> and describes it as a sum of sine and cosine waves.(If you asked, why? the answer because it's easier to solve that way)</p>
+<p>A quick refresher on Fourier Series, the core idea is to take a periodic signal <span  class="math">\(u(t)\)</span> and describes it as a sum of sine and cosine waves.</p>
 
 <p>A classical example, imagine you have the square wave function, the produces a signal like in the plot below:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">matplotlib.pyplot</span> <span style="color:#007020;font-weight:bold">as</span> <span style="color:#0e84b5;font-weight:bold">plt</span>
@@ -165,7 +165,7 @@ a_n=\frac{2}{L}\int_0^Lu(t)\cos(2\pi \frac{nt}{L})dt
 b_n=\frac{2}{L}\int_0^Lu(t)\sin(2\pi \frac{nt}{L})dt
 \]</span></p>
 
-<p>You can write a function to find the fourier coefficients and reconstruct them as necessary.</p>
+<p>As for python:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">fourier_series</span>(period, N):
     result <span style="color:#666">=</span> []
     T <span style="color:#666">=</span> <span style="color:#007020">len</span>(period)
@@ -206,15 +206,16 @@ plt<span style="color:#666">.</span>xlabel(<span style="color:#4070a0"></span><s
 plt<span style="color:#666">.</span>legend(fontsize<span style="color:#666">=</span><span style="color:#40a070">8</span>)
 plt<span style="color:#666">.</span>savefig(<span style="color:#4070a0"></span><span style="color:#4070a0">&#34;</span><span style="color:#4070a0">reconstructed.png</span><span style="color:#4070a0">&#34;</span>)
 plt<span style="color:#666">.</span>show()</code></pre></div>
+<p>This is the approximation produced by reconstructing the signal just as sum of <span  class="math">\(\sin\)</span> and <span  class="math">\(\cos\)</span></p>
+
 <p><figure><img src="/images/reconstructed.png#center" alt="Plot 2"></figure></p>
 
-<p>All this can be visualized as follows (courtesy of wikipedia)</p>
+<p>You can explain the whole process in one visualization (courtesy of wikipedia)</p>
 
 <p><figure><img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Fourier_transform_time_and_frequency_domains.gif" alt="Wiki Animation"></figure></p>
 
-<p>So how can this help solve Boundary Value Problems (BVP)</p>
-
-<p>If you are familiar with the topic, you will recommend using, <a href="https://en.wikipedia.org/wiki/Shooting_method">The Shooting Method</a>: basically, instead of tying a general solution to a boundary value problem down at both points, one only ties it down at one end. This leaves a free parameter (in the case of a second order problem). For a given value of this free parameter, one then integrates out a solution to the differential equation. Specifically, you start at the tied-down boundary point and integrate out just like an initial value problem. When you get to the other boundary point, the error between your solution and the true boundary condition tells you how to adjust the free parameter. Repeat this process until a solution matching the second boundary condition is obtained.</p>
+<p>Now, how can this help solve Boundary Value Problems (BVP). If you are familiar with the topic, you will recommend using, <a href="https://en.wikipedia.org/wiki/Shooting_method">The Shooting Method</a>.
+Basically, instead of tying a general solution to a boundary value problem down at both points, one only ties it down at one end. This leaves a free parameter (in the case of a second order problem). For a given value of this free parameter, one then integrates out a solution to the differential equation. Specifically, you start at the tied-down boundary point and integrate out just like an initial value problem. When you get to the other boundary point, the error between your solution and the true boundary condition tells you how to adjust the free parameter. Repeat this process until a solution matching the second boundary condition is obtained.</p>
 
 <p>But for unbounded regions, this becomes tricky, we can apply the same ideas from Fourier transforms, For example:</p>
 
@@ -239,6 +240,8 @@ e^{-x^2}\sin(x) = \int_{-\infty}^{\infty}c(s)e^{isx}ds.
 <p><span  class="math">\[
 u(x, t) = \frac{1}{\sqrt{2\pi}i}\int_{-\infty}^{\infty}\{ \hat{f}(s-1)-\hat{f}(s+1)\}e^{-4s^2 t}e^{isx}ds.
 \]</span></p>
+
+<p>Python code on github, <a href="https://github.com/zeyaddeeb/boundry-value-problems">https://github.com/zeyaddeeb/boundry-value-problems</a></p>
 
 <p>The Fourier transform applications are endless, it can still pull a good trick even in Ordinary Differential Equations.</p>
 
