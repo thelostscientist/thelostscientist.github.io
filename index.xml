@@ -6,10 +6,19 @@
     <description>Recent content on Zeyad Deeb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 05 Dec 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.zeyaddeeb.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Data Scientists should starting using Terraform</title>
+      <link>https://www.zeyaddeeb.com/posts/terraform-for-ds/</link>
+      <pubDate>Sat, 05 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zeyaddeeb.com/posts/terraform-for-ds/</guid>
+      <description>TL; DR: Data scientists should manage their data infrastructure with code. By doing so you can avoid being reliant on engineering departments and also keep better tabs on your costs.</description>
+    </item>
     
     <item>
       <title>Boundary Value Problems (BVP) with Fourier Transforms</title>
