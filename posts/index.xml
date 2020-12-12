@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Zeyad Deeb</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 05 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Dec 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.zeyaddeeb.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TensorFlow Lite: Adventures in Scaling Production Models</title>
+      <link>https://www.zeyaddeeb.com/posts/tensorflow-lite/</link>
+      <pubDate>Sat, 12 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zeyaddeeb.com/posts/tensorflow-lite/</guid>
+      <description>Scaling models in production is hard. Hopefully this post helps you get some of your research done before setting out on your own scaling journey.
+TL;DR There&#39;s a good reason why everyone says to set Tensorflow Lite thread counts to 1.</description>
+    </item>
     
     <item>
       <title>Data Scientists should starting using Terraform</title>
