@@ -18,7 +18,7 @@
       
       <guid>https://www.zeyaddeeb.com/posts/tensorflow-lite/</guid>
       <description>Scaling models in production is non-trivial. Hopefully this post helps you get some of your research done before setting out on your own scaling journey.
-TL;DR There&#39;s a good reason why everyone says to set Tensorflow thread counts to 1.</description>
+TL;DR There&#39;s a good reason why everyone says to set your Tensorflow thread counts to 1.</description>
     </item>
     
     <item>
